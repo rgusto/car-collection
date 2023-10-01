@@ -2,6 +2,7 @@ package com.ricardo.carcollection.domain.service;
 
 import com.ricardo.carcollection.domain.entity.Car;
 import com.ricardo.carcollection.domain.entity.User;
+import com.ricardo.carcollection.domain.exception.CarLicensePlateAlreadyExistsException;
 import com.ricardo.carcollection.domain.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,10 @@ public class CarService {
 
     @Transactional
     public Car create(Car car, User user) {
+        Optional<Car> optionalCar = carRepository.findByLicensePlate(car.getLicensePlate());
+        if (optionalCar.isPresent()) {
+            throw new CarLicensePlateAlreadyExistsException(car.getId(), car.getLicensePlate());
+        }
         return carRepository.save(car);
     }
 
