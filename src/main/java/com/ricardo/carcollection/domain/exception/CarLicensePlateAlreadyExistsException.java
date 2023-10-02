@@ -1,7 +1,8 @@
 package com.ricardo.carcollection.domain.exception;
 
+import jakarta.persistence.EntityExistsException;
 
-import javax.persistence.EntityExistsException;
+import java.util.UUID;
 
 public class CarLicensePlateAlreadyExistsException extends EntityExistsException {
 
@@ -11,7 +12,7 @@ public class CarLicensePlateAlreadyExistsException extends EntityExistsException
         super(message);
     }
 
-    public CarLicensePlateAlreadyExistsException(Long id, String licensePlate) {
+    public CarLicensePlateAlreadyExistsException(UUID id, String licensePlate) {
         this("License plate already exists: %s".formatted(licensePlate));
     }
 

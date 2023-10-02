@@ -6,7 +6,6 @@ import com.ricardo.carcollection.domain.exception.UserEmailAlreadyExistsExceptio
 import com.ricardo.carcollection.domain.exception.UserLoginAlreadyExistsException;
 import com.ricardo.carcollection.domain.exception.UserNotFoundException;
 import com.ricardo.carcollection.domain.repository.UserRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -15,9 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
-@AllArgsConstructor
 public class UserService {
 
     @Autowired
@@ -30,7 +29,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User findById(Long id) {
+    public User findById(UUID id) {
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
@@ -44,15 +43,14 @@ public class UserService {
         if (optionalUser.isPresent()) {
             throw new UserLoginAlreadyExistsException(user.getId(), user.getLogin());
         }
-        //user.setPassword(passwordEncoder.encode(user.getPassword()));
         User userSaved = userRepository.save(user);
         user.getCars().forEach(car -> car.setUser(userSaved));
-        carService.create(user.getCars());
+        carService.create(user.getCars(), userSaved);
         return userSaved;
     }
 
     @Transactional
-    public void delete(Long id) {
+    public void delete(UUID id) {
         try {
             User userDb = this.findById(id);
             userRepository.deleteById(userDb.getId());

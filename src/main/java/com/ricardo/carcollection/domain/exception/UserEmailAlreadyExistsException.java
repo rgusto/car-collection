@@ -1,7 +1,8 @@
 package com.ricardo.carcollection.domain.exception;
 
+import jakarta.persistence.EntityExistsException;
 
-import javax.persistence.EntityExistsException;
+import java.util.UUID;
 
 public class UserEmailAlreadyExistsException extends EntityExistsException {
 
@@ -11,7 +12,7 @@ public class UserEmailAlreadyExistsException extends EntityExistsException {
         super(message);
     }
 
-    public UserEmailAlreadyExistsException(Long id, String email) {
+    public UserEmailAlreadyExistsException(UUID id, String email) {
         this("E-mail already exists: %s".formatted(email));
     }
 

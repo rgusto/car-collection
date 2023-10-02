@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class UserController implements UserAPI {
@@ -29,7 +30,7 @@ public class UserController implements UserAPI {
     }
 
     @Override
-    public ResponseEntity<UserModel> findById(Long id) {
+    public ResponseEntity<UserModel> findById(UUID id) {
         User user = userService.findById(id);
         return ResponseEntity.ok(userConverter.toModel(user));
     }
@@ -44,13 +45,13 @@ public class UserController implements UserAPI {
 
     @Override
     @Transactional
-    public ResponseEntity<?> delete(Long id) {
+    public ResponseEntity<?> delete(UUID id) {
         userService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @Override
-    public UserModel update(Long id, UserInputUpdate input) {
+    public UserModel update(UUID id, UserInputUpdate input) {
         User user = userConverter.toDomainObject(input);
         user.setId(id);
         User userDb = userService.update(user);

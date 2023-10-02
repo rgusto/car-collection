@@ -1,7 +1,8 @@
 package com.ricardo.carcollection.domain.exception;
 
+import jakarta.persistence.EntityExistsException;
 
-import javax.persistence.EntityExistsException;
+import java.util.UUID;
 
 public class UserLoginAlreadyExistsException extends EntityExistsException {
 
@@ -11,7 +12,7 @@ public class UserLoginAlreadyExistsException extends EntityExistsException {
         super(message);
     }
 
-    public UserLoginAlreadyExistsException(Long id, String login) {
+    public UserLoginAlreadyExistsException(UUID id, String login) {
         this("Login already exists: %s".formatted(login));
     }
 

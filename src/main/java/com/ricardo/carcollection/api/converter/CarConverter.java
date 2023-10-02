@@ -2,7 +2,6 @@ package com.ricardo.carcollection.api.converter;
 
 import com.ricardo.carcollection.api.model.CarModel;
 import com.ricardo.carcollection.api.model.input.CarInput;
-import com.ricardo.carcollection.api.model.input.CarInputUpdate;
 import com.ricardo.carcollection.domain.entity.Car;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +26,6 @@ public class CarConverter {
     }
 
     public Car toDomainObject(CarInput input) {
-        return modelMapper.map(input, Car.class);
-    }
-
-    public Car toDomainObject(CarInputUpdate input) {
         return modelMapper.map(input, Car.class);
     }
 }

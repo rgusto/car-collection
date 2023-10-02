@@ -3,6 +3,11 @@ package com.ricardo.carcollection.api.contract;
 import com.ricardo.carcollection.api.model.UserModel;
 import com.ricardo.carcollection.api.model.input.UserInput;
 import com.ricardo.carcollection.api.model.input.UserInputUpdate;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,28 +19,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.UUID;
 
 @RequestMapping("/api/users")
 public interface UserAPI {
 
     @GetMapping
+    @Produces(MediaType.APPLICATION_JSON)
     List<UserModel> findAll();
 
     @GetMapping("/{id}")
-    ResponseEntity<UserModel> findById(@NotNull @PathVariable Long id);
+    @Produces(MediaType.APPLICATION_JSON)
+    ResponseEntity<UserModel> findById(@NotNull @PathVariable UUID id);
 
     @PostMapping
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @ResponseStatus(HttpStatus.CREATED)
     public UserModel create(@RequestBody @Valid UserInput input);
 
     @DeleteMapping("/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    ResponseEntity<?> delete(@NotNull @PathVariable Long id);
+    ResponseEntity<?> delete(@NotNull @PathVariable UUID id);
 
     @PutMapping("/{id}")
-    public UserModel update(@NotNull @PathVariable Long id, @RequestBody @Valid UserInputUpdate input);
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public UserModel update(@NotNull @PathVariable UUID id, @RequestBody @Valid UserInputUpdate input);
 
 }
