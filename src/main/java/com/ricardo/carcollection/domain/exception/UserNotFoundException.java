@@ -1,8 +1,7 @@
 package com.ricardo.carcollection.domain.exception;
 
-import jakarta.persistence.EntityNotFoundException;
 
-import java.util.UUID;
+import javax.persistence.EntityNotFoundException;
 
 public class UserNotFoundException extends EntityNotFoundException {
 
@@ -12,7 +11,7 @@ public class UserNotFoundException extends EntityNotFoundException {
         super(message);
     }
 
-    public UserNotFoundException(UUID id) {
+    public UserNotFoundException(Long id) {
         this("User with id %s not found".formatted(id));
     }
 

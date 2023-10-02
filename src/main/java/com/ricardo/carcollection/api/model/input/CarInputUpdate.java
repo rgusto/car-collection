@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-public class CarInput {
+public class CarInputUpdate {
 
     @NotNull
     private int year;

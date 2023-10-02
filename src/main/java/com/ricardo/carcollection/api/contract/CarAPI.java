@@ -1,8 +1,8 @@
 package com.ricardo.carcollection.api.contract;
 
-import com.ricardo.carcollection.api.model.UserModel;
-import com.ricardo.carcollection.api.model.input.UserInput;
-import com.ricardo.carcollection.api.model.input.UserInputUpdate;
+import com.ricardo.carcollection.api.model.CarModel;
+import com.ricardo.carcollection.api.model.input.CarInput;
+import com.ricardo.carcollection.api.model.input.CarInputUpdate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,24 +18,24 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@RequestMapping("/api/users")
-public interface UserAPI {
+@RequestMapping("/api/cars")
+public interface CarAPI {
 
     @GetMapping
-    List<UserModel> findAll();
+    List<CarModel> findAll();
 
     @GetMapping("/{id}")
-    ResponseEntity<UserModel> findById(@NotNull @PathVariable Long id);
+    ResponseEntity<CarModel> findById(@NotNull @PathVariable Long id);
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserModel create(@RequestBody @Valid UserInput input);
+    public CarModel create(@RequestBody @Valid CarInput input);
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     ResponseEntity<?> delete(@NotNull @PathVariable Long id);
 
     @PutMapping("/{id}")
-    public UserModel update(@NotNull @PathVariable Long id, @RequestBody @Valid UserInputUpdate input);
+    public CarModel update(@NotNull @PathVariable Long id, @RequestBody @Valid CarInputUpdate input);
 
 }
