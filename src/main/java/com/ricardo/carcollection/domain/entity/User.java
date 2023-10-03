@@ -40,6 +40,7 @@ public class User implements UserDetails {
     private String password;
     private String phone;
     private Date createdAt;
+    private Date lastLoginAt;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Car> cars;

@@ -1,5 +1,6 @@
 package com.ricardo.carcollection.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,8 @@ public class UserModel {
     private Date birthday;
     private String login;
     private String phone;
+    private String createdAt;
+    private String lastLoginAt;
     private List<CarModel> cars;
 
 }
