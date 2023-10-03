@@ -1,6 +1,7 @@
 package com.ricardo.carcollection.core.validation;
 
 import com.ricardo.carcollection.domain.exception.CarLicensePlateAlreadyExistsException;
+import com.ricardo.carcollection.domain.exception.CarNotFoundException;
 import com.ricardo.carcollection.domain.exception.EntityInUseException;
 import com.ricardo.carcollection.domain.exception.UserEmailAlreadyExistsException;
 import com.ricardo.carcollection.domain.exception.UserLoginAlreadyExistsException;
@@ -43,6 +44,12 @@ public class ValidationHandler {
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseError handleUserNotFoundException(UserNotFoundException exception) {
+        return new ResponseError(HttpStatus.NOT_FOUND.value(), exception.getMessage());
+    }
+
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(CarNotFoundException.class)
+    public ResponseError handleCarNotFoundException(CarNotFoundException exception) {
         return new ResponseError(HttpStatus.NOT_FOUND.value(), exception.getMessage());
     }
 

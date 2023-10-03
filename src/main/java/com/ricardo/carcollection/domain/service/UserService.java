@@ -9,15 +9,21 @@ import com.ricardo.carcollection.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -39,10 +45,12 @@ public class UserService {
         if (optionalUser.isPresent()) {
             throw new UserEmailAlreadyExistsException(user.getId(), user.getEmail());
         }
-        optionalUser = userRepository.findByLogin(user.getLogin());
-        if (optionalUser.isPresent()) {
+        UserDetails userDetails = userRepository.findByLogin(user.getLogin());
+        if (Objects.nonNull(userDetails)) {
             throw new UserLoginAlreadyExistsException(user.getId(), user.getLogin());
         }
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        user.setCreatedAt(new Date());
         User userSaved = userRepository.save(user);
         user.getCars().forEach(car -> car.setUser(userSaved));
         carService.create(user.getCars(), userSaved);
@@ -75,4 +83,8 @@ public class UserService {
         return userDb;
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByLogin(username);
+    }
 }

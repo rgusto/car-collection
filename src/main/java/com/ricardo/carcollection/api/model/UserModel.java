@@ -17,7 +17,6 @@ public class UserModel {
     private String email;
     private Date birthday;
     private String login;
-    private String password;
     private String phone;
     private List<CarModel> cars;
 
