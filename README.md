@@ -20,10 +20,12 @@ git clone https://github.com/rgusto/car-collection.git
 
 2. Instale as dependências com o Maven
 
-## Como executar:
+## Como executar
 
 1. Inicie a aplicação com o Maven;
 2. A API estará disponível através do endereço http://localhost:8081
+3. A documentação da API estará disponível através do endereço http://localhost:8081/swagger-ui/index.html
+4. Caso prefira, na raiz do projeto está localizado o arquivo **postman_colletion.json**, que pode ser importado no Postman para executar os testes dos endpoints.
 
 ## Histórias
 
@@ -33,5 +35,5 @@ git clone https://github.com/rgusto/car-collection.git
 * Configuração inicial do front-end;
 * Criação do CRUD da entidade **User** no front-end: opções CREATE e READ;
 * Criação do CRUD da entidade **User** no front-end: opções UPDATE e DELETE;
-* Implementação dos testes unitários.
-* Inclusão do Swagger;
+* Implementação dos testes unitários;
+* Inclusão do Swagger.
