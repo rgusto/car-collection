@@ -25,7 +25,7 @@ public class CarServiceTest {
     private UserService userService;
 
     @Test
-    public void shouldGetSuccess_WhenCreatingCar() throws ParseException {
+    public void shouldGetSuccess_whenCreatingCar() throws ParseException {
         User user = userService.findById(USER_ID);
         Car car = Car.builder()
                 .year(2018)
@@ -38,7 +38,7 @@ public class CarServiceTest {
     }
 
     @Test
-    public void shouldFail_WhenCreatingCar_WithExistentLicensePlate() {
+    public void shouldFail_whenCreatingCar_withExistentLicensePlate() {
         User user = userService.findById(USER_ID);
         Assertions.assertThrows(CarLicensePlateAlreadyExistsException.class, () -> {
             carService.create(Car.builder().licensePlate("AAA-0145").build(), user);
@@ -46,7 +46,7 @@ public class CarServiceTest {
     }
 
     @Test
-    public void shouldFail_WhenUpdatingCar_NonExistent() {
+    public void shouldFail_whenUpdatingCar_nonExistent() {
         User user = userService.findById(USER_ID);
         Assertions.assertThrows(CarNotFoundException.class, () -> {
             carService.update(Car.builder().id(UUID.randomUUID()).build(), user);
@@ -54,7 +54,7 @@ public class CarServiceTest {
     }
 
     @Test
-    public void shouldFail_WhenDeletingCar_NonExistent() {
+    public void shouldFail_whenDeletingCar_nonExistent() {
         User user = userService.findById(USER_ID);
         Assertions.assertThrows(CarNotFoundException.class, () -> {
             carService.delete(UUID.randomUUID(), user);
