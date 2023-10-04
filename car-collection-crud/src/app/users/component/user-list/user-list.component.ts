@@ -10,6 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UserListComponent implements OnInit {
   @Input() users: User[] = [];
   @Output() add = new EventEmitter(false);
+  @Output() edit = new EventEmitter(false);
+  @Output() delete = new EventEmitter(false);
 
   readonly displayedColumns = [
     'firstName',
@@ -25,5 +27,13 @@ export class UserListComponent implements OnInit {
 
   onAdd() {
     this.add.emit(true);
+  }
+
+  onEdit(user: User) {
+    this.edit.emit(user);
+  }
+
+  onDelete(user: User) {
+    this.delete.emit(user);
   }
 }
