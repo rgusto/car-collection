@@ -11,3 +11,4 @@ Consiste em uma API RESTful de criação de usuários e carros, com login.
 * Configuração inicial do front-end;
 * Criação do CRUD da entidade **User** no front-end: opções CREATE e READ;
 * Criação do CRUD da entidade **User** no front-end: opções UPDATE e DELETE;
+* Implementação dos testes unitários.
