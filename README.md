@@ -39,6 +39,26 @@ ou
 ```bash
 mvn test
 ```
+
+## Executando a aplicação do front-end
+
+### Requisitos
+
+* **Node.js** (última versão LTS): https://nodejs.org/pt-br/
+* Via terminal, instalar o **Angular CLI**:
+```bash
+npm install -g @angular/cli
+```
+
+### Como executar 
+
+* Acessar via terminal a pasta **car-collection-crud**, localizada na raiz do projeto;
+* Executar o comando:
+```bash
+npm run start
+```
+* Após isso, a aplicação estará disponível através do endereço http://localhost:4200
+
 ## Histórias
 
 * Criação das entidades **User** e **Car** e suas rotas;
