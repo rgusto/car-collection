@@ -52,8 +52,10 @@ public class UserService implements UserDetailsService {
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         user.setCreatedAt(new Date());
         User userSaved = userRepository.save(user);
-        user.getCars().forEach(car -> car.setUser(userSaved));
-        carService.create(user.getCars(), userSaved);
+        if (Objects.nonNull(user.getCars()) && !user.getCars().isEmpty()) {
+            user.getCars().forEach(car -> car.setUser(userSaved));
+            carService.create(user.getCars(), userSaved);
+        }
         return userSaved;
     }
 

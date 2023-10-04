@@ -26,7 +26,7 @@ public class UserInput {
     private String password;
     @NotBlank
     private String phone;
-    @NotNull
+
     private List<CarInput> cars;
 
 }

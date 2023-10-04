@@ -1,0 +1,1 @@
+INSERT INTO users (id, first_name, last_name, email, birthday, login, password, phone, created_at, last_login_at) VALUES ('397f0134-5cec-4c5e-b100-401e11d1b6b1','John','Doe','john@doe.com','2000-05-15','john.doe', '$2a$10$c3hNPtNt/7qDQXMnsWLvEeXgrJ/oklKJG.43mwL95JxAFBvD2aeu2', '95959-9595', CURRENT_TIMESTAMP, null);
