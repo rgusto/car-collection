@@ -31,7 +31,7 @@ export class UsersComponent implements OnInit {
   refresh() {
     this.users$ = this.usersService.findAll().pipe(
       catchError((error) => {
-        this.onError('Erro loading users');
+        this.onError('Error loading users');
         return of([]);
       })
     );
