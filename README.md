@@ -10,6 +10,8 @@ Projeto criado para o desafio Java com Spring Boot da empresa **Pitang**.
 
 Consiste em uma API RESTful de criação de usuários e carros, com login.
 
+Requisitos: Java 17 ou posterior e Maven 3.6 ou superior.
+
 ## Instalação
 
 1. Clone o repositório:
